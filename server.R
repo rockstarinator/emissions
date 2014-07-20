@@ -46,19 +46,21 @@ df <- df[, c(1, grep("195", names(df)), grep("196", names(df)),
              grep("199", names(df)), grep("200", names(df)), 
              grep("201", names(df)))]
 df <- df[apply(df, 1, function(x) sum(is.na(x))) == 0, ]
-df$country <- as.character(df$country)
 
 # Set up a plotting function that takes a data frame as an argument
 plotter <- function(dfplot) {
         h1 <- hPlot(emissions ~ gdp,  data = dfplot, type = "bubble", 
-                    group = "country", name = "country", size = "totalEmissions")
+                    group = "country", size = "totalEmissions")
         h1$legend(enabled = F)
-        h1$title(text = "What Country Emits the Most CO2?")
-        h1$subtitle(text = "Bubble Size Is Proportional to CO2 Emitted in the Selected Year")
+        h1$title(text = "What Country Emitted the Most CO2 in a Given Year?")
+        h1$subtitle(text = "Bubble Size Is Proportional to Millions of Tonnes of CO2")
         h1$credits(text = "Data from Gapminder.org")
         h1$xAxis(title = list(text = "GDP per Capita"), tickPositions = seq(0, 50000, 10000), min = 0, max = 50000)
         h1$yAxis(title = list(text = "Tonnes of CO2 Emitted Per Capita"), tickPositions = seq(0, 50, 10), min = 0, max = 50)
-        h1$plotOptions(bubble = list(maxSize = "300", minSize = "5"))
+        h1$plotOptions(bubble = list(maxSize = "300", 
+                                     minSize = "5",
+                                     tooltip = list(headerFormat = "<b>{series.name}</b><br>",
+                                                    pointFormat = "{point.y} tonnes per capita <br> {point.z} million tonnes")))
         h1$addParams(dom = 'yearPlot')
         return(h1) # Return yearPlot to the shiny UI
 }
