@@ -4,13 +4,14 @@ shinyUI(pageWithSidebar(
         headerPanel("CO2 Emissions"),
         sidebarPanel(
                 p('Place the cursor near the bubble. You will see the following information...'),
-                p(''),
-                p('Country Name'),
-                p('(x,y), Size: z'),
-                p(''),
+                h5('Country Name'),
+                h5('(x,y), Size: z'),
                 p('- x is the per capita GDP in a country adjusted for inflation. Units are 2005 US dollars.'),
                 p('- y is the per capita CO2 emitted in a country. Units are tonnes (1 tonne = 1000kg).'),
-                p('- z (the size of the bubble) is the total CO2 emitted in a country. Units are milliones of tonnes.')
+                p('- z (the size of the bubble) is the total CO2 emitted in a country. Units are milliones of tonnes.'),
+                p('---'),
+                p('This data is made available at Gapminder.org'),
+                p('To see the R code, go to github.com/rockstarinator/emissions')
         ),
         mainPanel(
                 sliderInput(inputId = "year",
