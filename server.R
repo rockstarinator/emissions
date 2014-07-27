@@ -1,12 +1,16 @@
 require(shiny); require(rCharts)
 
 # Data was manually downloaded from Gapminder.org.
+
 # indicator CDIAC carbon_dioxide_emissions_per_capita.xlsx was downloaded from
 # http://spreadsheets.google.com/pub?key=phAwcNAVuyj1gkNuUEXOGag&output=xls
+
 # indicator CDIAC carbon_dioxide_total_emissions.xlsx was downloaded from
 # http://spreadsheets.google.com/pub?key=phAwcNAVuyj1NHPC9MyZ9SQ&output=xls
+
 # indicator gapminder gdp_per_capita_ppp.xlsx was downloaded from
 # http://spreadsheets.google.com/pub?key=phAwcNAVuyj1jiMAkmq1iMg&output=xls
+
 # There may be a way to download data from Google Spreadsheets programatically, 
 # but it is a difficult hack and I could not get it to work.
 # For more details, see http://blog.revolutionanalytics.com/2009/09/how-to-use-a-google-spreadsheet-as-data-in-r.html
@@ -53,10 +57,10 @@ plotter <- function(dfplot) {
                     group = "country", size = "totalEmissions")
         h1$legend(enabled = F)
         h1$title(text = "What Country Emitted the Most CO2 in a Given Year?")
-        h1$subtitle(text = "Bubble Size Is Proportional to Millions of Tonnes of CO2")
+        h1$subtitle(text = "Bubble Size - Millions of Tonnes")
         h1$credits(text = "Data from Gapminder.org")
         h1$xAxis(title = list(text = "GDP per Capita"), tickPositions = seq(0, 50000, 10000), min = 0, max = 50000)
-        h1$yAxis(title = list(text = "Tonnes of CO2 Emitted Per Capita"), tickPositions = seq(0, 50, 10), min = 0, max = 50)
+        h1$yAxis(title = list(text = "Tonnes per Capita"), tickPositions = seq(0, 50, 10), min = 0, max = 50)
         h1$plotOptions(bubble = list(maxSize = "300", 
                                      minSize = "5",
                                      tooltip = list(headerFormat = "<b>{series.name}</b><br>",

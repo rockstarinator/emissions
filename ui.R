@@ -3,15 +3,18 @@ require(shiny); require(rCharts)
 shinyUI(pageWithSidebar(
         headerPanel("CO2 Emissions App"),
         sidebarPanel(
-                p('The CO2 emissions app allows you to explore CO2 emissions over a sixty year timespan. It is intended as an educational tool that gives accurate scientific information about CO2 emissions.'),
-                p('Place the cursor near a bubble to see the country name. Push the slider to explore a different year. Do not forget to play around with the checkbox options below.'),
-                h5('A Note on Units'),                
-                p('- x is the per capita GDP in a country adjusted for inflation. Units are 2005 US dollars.'),
-                p('- y is the per capita CO2 emitted in a country. Units are tonnes (1 tonne = 1000kg).'),
-                p('- z (the size of the bubble) is the total CO2 emitted in a country. Units are milliones of tonnes.'),
+                p('The CO2 emissions app allows you to explore CO2 emissions between 1951 and 2011. 
+                  It is intended as an educational tool that gives accurate scientific information.'),
+                p('Push the slider to explore a different year.
+                  Click or point at a bubble to see what country is represented.
+                  Check a box down below to explore a hypothetical world, where people emit more or less CO2.'),
+                p('FYI, 1 tonne means 1000kg and GDP is measured in 2005 US dollars.'),
                 p('---'),
-                p('The data comes from Gapminder.org'),
-                p('To see the R code, go to github.com/rockstarinator/emissions')
+                p('To see the R code, go to',
+                  a("github.com/rockstarinator/emissions.", 
+                    href = "https://github.com/rockstarinator/emissions")),
+                p('All data comes from', 
+                  a("Gapminder.org.", href = "http://www.gapminder.org"))
         ),
         mainPanel(
                 sliderInput(inputId = "year",
