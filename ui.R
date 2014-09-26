@@ -1,34 +1,24 @@
 require(shiny); require(rCharts)
 
 shinyUI(pageWithSidebar(
-        headerPanel("CO2 Emissions App"),
+        headerPanel(""),
         sidebarPanel(
-                p('The CO2 emissions app allows you to explore CO2 emissions between 1951 and 2011.'),
-                p('Push the slider to explore a different year.
-                  Click or point at a bubble to see what country is represented.
-                  Choose an option down below to explore a hypothetical world where people emit more or less CO2.'),
-                p('GDP is measured in 2005 US dollars.'),
-                p('---'),
-                p('To see the R code, go',
-                  a("here", href = "https://rockstarinator.github.io/emissions/ui.R"),
-                  ' and ',
-                  a("here", href = "https://rockstarinator.github.io/emissions/server.R")),
-                p('All data comes from', 
-                  a("Gapminder.org.", href = "http://www.gapminder.org"))
-        ),
-        mainPanel(
+                p(tags$strong("This CO2 emissions enables you to point, click and explore with interactive graphing.")),
+                p(tags$span(style="color:green", "Click or point at a bubble to see what country is represented.")),
                 sliderInput(inputId = "year",
-                            label = "Select a year",
+                            label = tags$span(style="color:red", "Push the slider to explore a different year:"),
                             min = 1951,
                             max = 2011,
-                            value = 2000,
+                            value = 2011,
                             step = 1,
                             format = "####"),
-                showOutput("yearPlot", "highcharts"),
+                tags$br(),
                 radioButtons("special", 
-                             label = "Choose an option:",
+                             label = tags$span(style="color:blue", "Click below to explore a hypothetical world where people emit more or less CO2:"),
                              choices = list("View real world data." = 1, 
                                             "What if all people emitted as much CO2 as Americans?" = 2,
-                                            "What if all people emitted as little CO2 as the French?" = 3))
-        )
+                                            "What if all people emitted as little CO2 as the French?" = 3)
+                             )
+        ), 
+        mainPanel(showOutput("yearPlot", "highcharts"))
 ))
